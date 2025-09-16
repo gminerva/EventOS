@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<ul>
+  <li><a href="/home">Inicio</a></li>
+  {% if session["rol"] == "admin" %}
+    <li><a href="/estadisticas">Estadísticas</a></li>
+    <li><a href="/crear_usuario">Gestión de usuarios</a></li>
+  {% endif %}
+  {% if session["rol"] == "staff" %}
+    <li><a href="/ventas">Ventas</a></li>
+  {% endif %}
+</ul>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand fw-bolder">Tareas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('Inicio') }}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('mi_evento') }}">Mi Evento</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="ventasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ventas
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="ventasDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('crear_entrada') }}">Crear Entrada</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('ventas') }}">Mandar Entrada</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('estadisticas') }}">Estadísticas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('escanear') }}">Escanear</a>
+                    </li>
+                </ul>
+            </div>
+            <span>Hola {{session['NombreUsuario']}} {{session['ApellidoUsuario']}}<a href="{{url_for('logout')}}" class="mx-3">Salir</a></span>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Bienvenido a la Aplicación de Gestión de Tareas</h2>
+        <p>Esta aplicación te ayudará a gestionar usuarios, estadísticas y otras funcionalidades de manera eficiente.</p>
+        
+        <h3>Guía de Inicio Rápido</h3>
+        <p>Sigue estos sencillos pasos para comenzar a usar la aplicación:</p>
+        <ol>
+            <li><strong>Crear una Cuenta:</strong> Si aún no tienes una cuenta, regístrate.</li>
+            <li><strong>Iniciar Sesión:</strong> Ingresa con tus credenciales.</li>
+            <li><strong>Explorar Funcionalidades:</strong> Navega por las diferentes secciones del menú para conocer todas las funcionalidades.</li>
+        </ol>
+        
+        <h3>Tutorial Detallado</h3>
+        
+        <div class="accordion" id="tutorialAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Gestión de Ventas
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#tutorialAccordion">
+                    <div class="accordion-body">
+                        <p>En esta sección puedes crear y mandar entradas de ventas.</p>
+                        <p><strong>Pasos:</strong></p>
+                        <ol>
+                            <li>Ir al menú <strong>Ventas</strong>.</li>
+                            <li>Seleccionar <strong>Crear Entrada</strong> para añadir una nueva venta.</li>
+                            <li>Completar los detalles y guardar.</li>
+                            <li>Para enviar una entrada, seleccionar <strong>Mandar Entrada</strong>.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Gestión de Usuarios
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#tutorialAccordion">
+                    <div class="accordion-body">
+                        <p>En esta sección puedes gestionar el personal.</p>
+                        <p><strong>Pasos:</strong></p>
+                        <ol>
+                            <li>Ir al menú <strong>Usuarios</strong>.</li>
+                            <li>Seleccionar <strong>Crear Usuario</strong> para añadir un nuevo miembro del personal.</li>
+                            <li>Completar los detalles y guardar.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Gestión de Eventos
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#tutorialAccordion">
+                    <div class="accordion-body">
+                        <p>En esta sección puedes gestionar tus eventos.</p>
+                        <p><strong>Pasos:</strong></p>
+                        <ol>
+                            <li>Ir al menú <strong>Mi Evento</strong>.</li>
+                            <li>Completar los detalles del evento y guardar.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Estadísticas
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#tutorialAccordion">
+                    <div class="accordion-body">
+                        <p>En esta sección puedes ver estadísticas detalladas de tus ventas y eventos.</p>
+                        <p><strong>Pasos:</strong></p>
+                        <ol>
+                            <li>Ir al menú <strong>Estadísticas</strong>.</li>
+                            <li>Explorar los diferentes gráficos y tablas para obtener información detallada.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Enlaces Útiles</h3>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Inicio</a></li>
+            <li><a href="{{ url_for('crear_entrada') }}">Crear Entrada</a></li>
+            <li><a href="{{ url_for('ventas') }}">Mandar Entrada</a></li>
+            <li><a href="{{ url_for('crear_usuario') }}">Usuarios</a></li>
+            <li><a href="{{ url_for('mi_evento') }}">Mi Evento</a></li>
+            <li><a href="{{ url_for('estadisticas') }}">Estadísticas</a></li>
+        </ul>
+        
+        <h3>Soporte</h3>
+        <p>Si necesitas ayuda, por favor contacta con nuestro equipo de soporte a través de <a href="mailto:soporte@tareasapp.com">soporte@tareasapp.com</a>.</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

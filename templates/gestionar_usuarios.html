@@ -1,0 +1,444 @@
+{% extends "base.html" %}
+
+{% block title %}Gestión de Usuarios - EventOS{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center mb-4 fade-in">
+                <h2 class="display-5 fw-bold text-primary">
+                    <i class="bi bi-people me-3"></i>
+                    Gestión de Usuarios
+                </h2>
+                <p class="lead text-muted">Administra usuarios del sistema</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulario Crear Usuario -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card slide-in">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="bi bi-person-plus me-2"></i>
+                        Crear Nuevo Usuario
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form action="{{ url_for('crear_usuario') }}" method="post" id="usuarioForm" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Usuario" required>
+                                    <label for="username">
+                                        <i class="bi bi-at me-2"></i>Nombre de Usuario
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Por favor ingrese un nombre de usuario.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                    <label for="email">
+                                        <i class="bi bi-envelope me-2"></i>Correo Electrónico
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Por favor ingrese un email válido.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
+                                    <label for="nombre">
+                                        <i class="bi bi-person me-2"></i>Nombre
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Por favor ingrese el nombre.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" required>
+                                    <label for="apellido">
+                                        <i class="bi bi-person me-2"></i>Apellido
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Por favor ingrese el apellido.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating position-relative">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" minlength="8" required>
+                                    <label for="password">
+                                        <i class="bi bi-lock me-2"></i>Contraseña
+                                    </label>
+                                    <button type="button" class="btn btn-outline-secondary position-absolute end-0 top-50 translate-middle-y me-3" onclick="togglePasswordVisibility('password')" style="border: none; background: none;">
+                                        <i class="bi bi-eye" id="password-toggle-icon"></i>
+                                    </button>
+                                    <div class="invalid-feedback">
+                                        La contraseña debe tener mínimo 8 caracteres.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" id="rol" name="rol" required>
+                                        <option value="" disabled selected>Seleccione un rol...</option>
+                                        <option value="admin">Administrador</option>
+                                        <option value="staff">Staff</option>
+                                    </select>
+                                    <label for="rol">
+                                        <i class="bi bi-shield me-2"></i>Rol
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Por favor seleccione un rol.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-person-check me-2"></i>
+                                    Guardar
+                                </button>
+                                <button type="reset" class="btn btn-outline-secondary btn-lg ms-2">
+                                    <i class="bi bi-arrow-clockwise me-2"></i>
+                                    Limpiar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla de Usuarios -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card fade-in">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="bi bi-list me-2"></i>
+                        Lista de Usuarios
+                    </h5>
+                    <div class="d-flex gap-2">
+                        <div class="input-group" style="max-width: 300px;">
+                            <span class="input-group-text">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" class="form-control" id="searchInput" placeholder="Buscar usuarios...">
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-funnel me-2"></i>Filtrar
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="filtrarPorRol('all')">Todos</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filtrarPorRol('admin')">Administradores</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filtrarPorRol('staff')">Staff</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#" onclick="filtrarPorEstado(1)">Activos</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filtrarPorEstado(0)">Inactivos</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0" id="usuariosTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Usuario</th>
+                                    <th>Nombre Completo</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th>Estado</th>
+                                    <th>Fecha Creación</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for usuario in usuarios %}
+                                <tr data-rol="{{ usuario.rol }}" data-estado="{{ usuario.activo }}">
+                                    <td>{{ usuario.id }}</td>
+                                    <td>
+                                        <strong>{{ usuario.username }}</strong>
+                                    </td>
+                                    <td>{{ usuario.nombre }} {{ usuario.apellido }}</td>
+                                    <td>{{ usuario.email }}</td>
+                                    <td>
+                                        <span class="badge bg-{% if usuario.rol == 'admin' %}primary{% else %}success{% endif %}">
+                                            <i class="bi bi-{% if usuario.rol == 'admin' %}shield{% else %}person{% endif %} me-1"></i>
+                                            {{ usuario.rol|upper }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{% if usuario.activo %}success{% else %}secondary{% endif %}">
+                                            {% if usuario.activo %}
+                                                <i class="bi bi-check-circle me-1"></i>Activo
+                                            {% else %}
+                                                <i class="bi bi-x-circle me-1"></i>Inactivo
+                                            {% endif %}
+                                        </span>
+                                    </td>
+                                    <td>{{ usuario.fecha_creacion[:19] if usuario.fecha_creacion else 'N/A' }}</td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <button type="button" class="btn btn-outline-info" onclick="verDetalleUsuario('{{ usuario.id }}')" title="Ver detalles">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-warning" onclick="editarUsuario('{{ usuario.id }}')" title="Editar">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            {% if usuario.id != session.usuario_id %}
+                                            <button type="button" class="btn btn-outline-{% if usuario.activo %}danger{% else %}success{% endif %}" onclick="toggleUsuarioEstado('{{ usuario.id }}', '{{ usuario.activo }}')" title="{% if usuario.activo %}Desactivar{% else %}Activar{% endif %}">
+                                                <i class="bi bi-{% if usuario.activo %}toggle-off{% else %}toggle-on{% endif %}"></i>
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para editar usuario -->
+<div class="modal fade" id="editUsuarioModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="bi bi-pencil me-2"></i>
+                    Editar Usuario
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="editUsuarioForm">
+                <div class="modal-body">
+                    <input type="hidden" id="edit-usuario-id">
+                    
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="edit-username" required>
+                            <label for="edit-username">Nombre de Usuario</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="edit-email" required>
+                            <label for="edit-email">Email</label>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="edit-nombre" required>
+                                <label for="edit-nombre">Nombre</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="edit-apellido" required>
+                                <label for="edit-apellido">Apellido</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <select class="form-select" id="edit-rol" required>
+                                <option value="admin">Administrador</option>
+                                <option value="staff">Staff</option>
+                            </select>
+                            <label for="edit-rol">Rol</label>
+                        </div>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="edit-cambiar-password">
+                        <label class="form-check-label" for="edit-cambiar-password">
+                            Cambiar contraseña
+                        </label>
+                    </div>
+
+                    <div class="mb-3" id="password-group" style="display: none;">
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="edit-password" minlength="8">
+                            <label for="edit-password">Nueva Contraseña</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let usuarios = '{{ usuarios|tojson }}';
+
+document.addEventListener('DOMContentLoaded', function() {
+    const usuarioForm = document.getElementById('usuarioForm');
+    const editUsuarioForm = document.getElementById('editUsuarioForm');
+    const searchInput = document.getElementById('searchInput');
+
+    // Validación del formulario de creación
+    usuarioForm.addEventListener('submit', function(event) {
+        if (!this.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        this.classList.add('was-validated');
+    });
+
+    // Validación del formulario de edición
+    editUsuarioForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (!this.checkValidity()) {
+            this.classList.add('was-validated');
+            return;
+        }
+        guardarCambiosUsuario();
+    });
+
+    // Búsqueda en tiempo real
+    searchInput.addEventListener('keyup', function() {
+        const filter = this.value.toLowerCase();
+        const table = document.getElementById('usuariosTable');
+        const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+        for (let i = 0; i < rows.length; i++) {
+            const row = rows[i];
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.includes(filter) ? '' : 'none';
+        }
+    });
+
+    // Mostrar/ocultar campo de contraseña en edición
+    document.getElementById('edit-cambiar-password').addEventListener('change', function() {
+        const passwordGroup = document.getElementById('password-group');
+        const passwordInput = document.getElementById('edit-password');
+        
+        if (this.checked) {
+            passwordGroup.style.display = 'block';
+            passwordInput.required = true;
+        } else {
+            passwordGroup.style.display = 'none';
+            passwordInput.required = false;
+            passwordInput.value = '';
+        }
+    });
+});
+
+function togglePasswordVisibility(fieldId) {
+    const field = document.getElementById(fieldId);
+    const icon = document.getElementById(fieldId + '-toggle-icon');
+    
+    if (field.type === 'password') {
+        field.type = 'text';
+        icon.className = 'bi bi-eye-slash';
+    } else {
+        field.type = 'password';
+        icon.className = 'bi bi-eye';
+    }
+}
+
+function filtrarPorRol(rol) {
+    const table = document.getElementById('usuariosTable');
+    const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const rowRol = row.getAttribute('data-rol');
+        
+        if (rol === 'all' || rowRol === rol) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    }
+}
+
+function filtrarPorEstado(estado) {
+    const table = document.getElementById('usuariosTable');
+    const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const rowEstado = parseInt(row.getAttribute('data-estado'));
+        
+        if (rowEstado === estado) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    }
+}
+
+function verDetalleUsuario(usuarioId) {
+    const usuario = usuarios.find(u => u.id === usuarioId);
+    if (usuario) {
+        alert(`Detalle del usuario:\n\nID: ${usuario.id}\nUsuario: ${usuario.username}\nNombre: ${usuario.nombre} ${usuario.apellido}\nEmail: ${usuario.email}\nRol: ${usuario.rol}\nEstado: ${usuario.activo ? 'Activo' : 'Inactivo'}\nFecha creación: ${usuario.fecha_creacion}`);
+    }
+}
+
+function editarUsuario(usuarioId) {
+    const usuario = usuarios.find(u => u.id === usuarioId);
+    if (usuario) {
+        document.getElementById('edit-usuario-id').value = usuario.id;
+        document.getElementById('edit-username').value = usuario.username;
+        document.getElementById('edit-email').value = usuario.email;
+        document.getElementById('edit-nombre').value = usuario.nombre;
+        document.getElementById('edit-apellido').value = usuario.apellido;
+        document.getElementById('edit-rol').value = usuario.rol;
+        
+        const modal = new bootstrap.Modal(document.getElementById('editUsuarioModal'));
+        modal.show();
+    }
+}
+
+function guardarCambiosUsuario() {
+    // Aquí implementarías la lógica para guardar los cambios
+    // Por ahora solo mostramos un mensaje
+    alert('Funcionalidad de edición en desarrollo');
+}
+
+function toggleUsuarioEstado(usuarioId, estadoActual) {
+    const accion = estadoActual ? 'desactivar' : 'activar';
+    const confirmMessage = `¿Está seguro de que desea ${accion} este usuario?`;
+    
+    if (confirm(confirmMessage)) {
+        // Aquí implementarías la lógica para cambiar el estado
+        alert(`Usuario ${accion}do correctamente`);
+        location.reload();
+    }
+}
+</script>
+{% endblock %}
