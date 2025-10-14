@@ -1,0 +1,330 @@
+Date: 29/8/2024
+Time: 16:20
+Phone Number: +595994457801
+Image: temp_image.png
+Caption: Hola Facu Salgueiro, esta es tu entrada para el evento.
+--------------------
+Date: 29/8/2024
+Time: 16:22
+Phone Number: +595994457801
+Image: temp_image.png
+Caption: Hola Facu Salgueiro, esta es tu entrada para el evento.
+--------------------
+Date: 29/8/2024
+Time: 16:49
+Phone Number: +595994547801
+Image: temp_image.png
+Caption: Hola Facu Salgueiro, esta es tu entrada para el evento.
+--------------------
+Date: 29/8/2024
+Time: 16:49
+Phone Number: +595994547801
+Image: temp_image.png
+Caption: Hola Facu Salgueiro, esta es tu entrada para el evento.
+--------------------
+Date: 29/8/2024
+Time: 16:55
+Phone Number: +595994457801
+Image: temp_image.png
+Caption: Hola Facu Salgueiro, esta es tu entrada para el evento.
+--------------------
+Date: 29/8/2024
+Time: 16:56
+Phone Number: +595994457801
+Image: temp_image.png
+Caption: Hola Facu Salgueiro, esta es tu entrada para el evento.
+--------------------
+Date: 29/8/2024
+Time: 17:6
+Phone Number: +595994457801
+Image: temp_image.png
+Caption: Hola Facu Salgueiro, esta es tu entrada para el evento.
+--------------------
+Date: 29/8/2024
+Time: 17:7
+Phone Number: +595994457801
+Image: temp_image.png
+Caption: Hola Facu Salgueiro, esta es tu entrada para el evento.
+--------------------
+Date: 29/8/2024
+Time: 17:11
+Phone Number: +595994457801
+Image: temp_image.png
+Caption: Hola Facu Salgueiro, esta es tu entrada para el evento.
+--------------------
+Date: 29/8/2024
+Time: 17:14
+Phone Number: +595985319860
+Image: temp_image.png
+Caption: Hola Sebastian Gomez de la fuente, esta es tu entrada para el evento.
+--------------------
+Date: 29/8/2024
+Time: 17:17
+Phone Number: +595983154705
+Image: temp_image.png
+Caption: Hola Constanza Velilla, esta es tu entrada para el evento.
+--------------------
+Date: 29/8/2024
+Time: 17:22
+Phone Number: +595994252875
+Image: temp_image.png
+Caption: Hola Sebastian Salgueiro, esta es tu entrada para el evento.
+--------------------
+Date: 1/9/2024
+Time: 12:0
+Phone Number: +595994252875
+Image: temp_image.png
+Caption: Hola Sebastian Salgueiro!, esta es tu entrada para Althea
+--------------------
+Date: 7/10/2025
+Time: 23:10
+Phone Number: +595984070224
+Image: static\entradas_emitidas\Z9L1BZXL.png
+Caption: ¡Hola Croto! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: Z9L1BZXL
+--------------------
+Date: 7/10/2025
+Time: 23:46
+Phone Number: +595984070224
+Image: static\entradas_emitidas\BZUCIYP8.png
+Caption: ¡Hola Jesus! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: BZUCIYP8
+--------------------
+Date: 7/10/2025
+Time: 23:47
+Phone Number: +595984070224
+Image: static\entradas_emitidas\Q4CXAZQM.png
+Caption: ¡Hola Jesus! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: Q4CXAZQM
+--------------------
+Date: 8/10/2025
+Time: 18:37
+Phone Number: +595984070224
+Image: static\entradas_emitidas\1PBAWUWR.png
+Caption: ¡Hola Maria! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: 1PBAWUWR
+--------------------
+Date: 8/10/2025
+Time: 18:38
+Phone Number: +595984070224
+Image: static\entradas_emitidas\ZSMNUP0B.png
+Caption: ¡Hola Jesus! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: Generales - Gente Marrón | Código: ZSMNUP0B
+--------------------
+Date: 8/10/2025
+Time: 22:8
+Phone Number: +595984070224
+Image: static\entradas_emitidas\23IIIY9D.png
+Caption: ¡Hola Jorge! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: 23IIIY9D
+--------------------
+Date: 8/10/2025
+Time: 22:8
+Phone Number: +595984070224
+Image: static\entradas_emitidas\DC7YX9HY.png
+Caption: ¡Hola Crustacio! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: Generales - Gente Marrón | Código: DC7YX9HY
+--------------------
+Date: 8/10/2025
+Time: 22:13
+Phone Number: +595984070224
+Image: static\entradas_emitidas\ZHI7RN68.png
+Caption: ¡Hola Croto! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: ZHI7RN68
+--------------------
+Date: 8/10/2025
+Time: 22:14
+Phone Number: +595984070224
+Image: static\entradas_emitidas\DFOUX8GJ.png
+Caption: ¡Hola Jesus! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: DFOUX8GJ
+--------------------
+Date: 8/10/2025
+Time: 22:17
+Phone Number: +595984070224
+Image: static\entradas_emitidas\1463AFL4.png
+Caption: ¡Hola Crustacio! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: 1463AFL4
+--------------------
+Date: 8/10/2025
+Time: 22:23
+Phone Number: +595984070224
+Image: static\entradas_emitidas\C4VZBWHC.png
+Caption: ¡Hola Crustacio! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: C4VZBWHC
+--------------------
+Date: 8/10/2025
+Time: 22:26
+Phone Number: +595984070224
+Image: static\entradas_emitidas\5V5XBBU9.png
+Caption: ¡Hola Croto! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: 5V5XBBU9
+--------------------
+Date: 8/10/2025
+Time: 22:27
+Phone Number: +595984070224
+Image: static\entradas_emitidas\3HYB9DZ3.png
+Caption: ¡Hola Croto! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: 3HYB9DZ3
+--------------------
+Date: 8/10/2025
+Time: 22:28
+Phone Number: +595984070224
+Image: static\entradas_emitidas\W39QEVS1.png
+Caption: ¡Hola Crustacio! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: W39QEVS1
+--------------------
+Date: 8/10/2025
+Time: 22:33
+Phone Number: +595984070224
+Image: static\entradas_emitidas\3Q2WMJ21.png
+Caption: ¡Hola Crustacio! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: 3Q2WMJ21
+--------------------
+Date: 8/10/2025
+Time: 22:35
+Phone Number: +595984070224
+Image: static\entradas_emitidas\MABQZ8H0.png
+Caption: ¡Hola Maria! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: MABQZ8H0
+--------------------
+Date: 8/10/2025
+Time: 22:36
+Phone Number: +595984070224
+Image: static\entradas_emitidas\NQPW7HC4.png
+Caption: ¡Hola Croto! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: NQPW7HC4
+--------------------
+Date: 8/10/2025
+Time: 22:47
+Phone Number: +595984070224
+Image: static\entradas_emitidas\MQ0O40FL.png
+Caption: ¡Hola Crustacio! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: MQ0O40FL
+--------------------
+Date: 8/10/2025
+Time: 22:57
+Phone Number: +595984070224
+Image: static\entradas_emitidas\NUQ4LWKY.png
+Caption: ¡Hola Croto! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: NUQ4LWKY
+--------------------
+Date: 8/10/2025
+Time: 23:2
+Phone Number: +595984070224
+Image: static\entradas_emitidas\VZD51WR7.png
+Caption: ¡Hola Crustacio! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: VZD51WR7
+--------------------
+Date: 8/10/2025
+Time: 23:4
+Phone Number: +595984070224
+Image: static\entradas_emitidas\8O1Q9PPG.png
+Caption: ¡Hola Croto! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: 8O1Q9PPG
+--------------------
+Date: 8/10/2025
+Time: 23:7
+Phone Number: +595984070224
+Image: static\entradas_emitidas\U4DUC3BC.png
+Caption: ¡Hola Crustacio! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: U4DUC3BC
+--------------------
+Date: 8/10/2025
+Time: 23:10
+Phone Number: +595984070224
+Image: static\entradas_emitidas\CBAMR9Y2.png
+Caption: ¡Hola Croto! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: CBAMR9Y2
+--------------------
+Date: 8/10/2025
+Time: 23:12
+Phone Number: +595984070224
+Image: static\entradas_emitidas\103S390N.png
+Caption: ¡Hola Crustacio! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: 103S390N
+--------------------
+Date: 8/10/2025
+Time: 23:13
+Phone Number: +595984070224
+Image: static\entradas_emitidas\EY3NCVLO.png
+Caption: ¡Hola Crustacio! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: EY3NCVLO
+--------------------
+Date: 8/10/2025
+Time: 23:15
+Phone Number: +595984070224
+Image: static\entradas_emitidas\PGCKU50H.png
+Caption: ¡Hola Crustacio! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: PGCKU50H
+--------------------
+Date: 8/10/2025
+Time: 23:17
+Phone Number: +595984070224
+Image: static\entradas_emitidas\2PVRM0GQ.png
+Caption: ¡Hola Crustacio! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: 2PVRM0GQ
+--------------------
+Date: 8/10/2025
+Time: 23:18
+Phone Number: +595984070224
+Image: static\entradas_emitidas\23G3IA0N.png
+Caption: ¡Hola Croto! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: 23G3IA0N
+--------------------
+Date: 9/10/2025
+Time: 17:58
+Phone Number: +595984070224
+Image: static\entradas_emitidas\QGK03IFP.png
+Caption: ¡Hola Jesus! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: Generales - Gente Marrón | Código: QGK03IFP
+--------------------
+Date: 9/10/2025
+Time: 17:59
+Phone Number: +595984070224
+Image: static\entradas_emitidas\A6KCDNHA.png
+Caption: ¡Hola Jorge! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: A6KCDNHA
+--------------------
+Date: 9/10/2025
+Time: 19:44
+Phone Number: +595984070224
+Image: static\entradas_emitidas\VNYMNGL0.png
+Caption: ¡Hola Croto! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: Maria | Código: VNYMNGL0
+--------------------
+Date: 11/10/2025
+Time: 9:5
+Phone Number: +595984070224
+Image: static\entradas_emitidas\TWK1DPGB.png
+Caption: ¡Hola Minerva! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: TWK1DPGB
+--------------------
+Date: 11/10/2025
+Time: 9:6
+Phone Number: +595984070224
+Image: static\entradas_emitidas\IPPO23BI.png
+Caption: ¡Hola Minerva! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: IPPO23BI
+--------------------
+Date: 11/10/2025
+Time: 9:11
+Phone Number: +595984070224
+Image: static\entradas_emitidas\ZKZ5YDCV.png
+Caption: ¡Hola Jorge! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: ZKZ5YDCV
+--------------------
+Date: 11/10/2025
+Time: 9:13
+Phone Number: +595984070224
+Image: static\entradas_emitidas\FQPG4SC7.png
+Caption: ¡Hola Maria! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: FQPG4SC7
+--------------------
+Date: 11/10/2025
+Time: 9:14
+Phone Number: +595984070224
+Image: static\entradas_emitidas\PXOJ2K8Z.png
+Caption: ¡Hola Maria! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: PXOJ2K8Z
+--------------------
+Date: 11/10/2025
+Time: 9:59
+Phone Number: +595984070224
+Image: static\entradas_emitidas\7NRAMJK5.png
+Caption: ¡Hola Mauricio! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: 7NRAMJK5
+--------------------
+Date: 11/10/2025
+Time: 10:2
+Phone Number: +595984070224
+Image: static\entradas_emitidas\4OUQPKTB.png
+Caption: ¡Hola Jesus! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: 4OUQPKTB
+--------------------
+Date: 11/10/2025
+Time: 10:37
+Phone Number: +595984070224
+Image: static\entradas_emitidas\484FSR1G.png
+Caption: ¡Hola Juan! Esta es tu entrada para 'JesusVieneUWU'.Fecha: 2025-12-24 | Lugar: Luque, Mora Cue -Villa Policial - Calle Isidro Oscariz, entre Zaracho y Santa CruzTipo: VIP | Código: 484FSR1G
+--------------------
+Date: 11/10/2025
+Time: 10:45
+Phone Number: +595984070224
+Image: static\entradas_emitidas\KY6DS9R1.png
+Caption: ¡Hola Lacalle! Esta es tu entrada para 'Dia "A" '.Fecha: 2026-03-06 | Lugar: Universidad AmericanaTipo: Antiguos Alumnos | Código: KY6DS9R1
+--------------------
+Date: 11/10/2025
+Time: 11:42
+Phone Number: +595984070224
+Image: static\entradas_emitidas\GATF94Z4.png
+Caption: ¡Hola Lujan! Esta es tu entrada para 'Dia "A" '.Fecha: 2026-03-06 | Lugar: Universidad AmericanaTipo: Antiguos Alumnos | Código: GATF94Z4
+--------------------
+Date: 13/10/2025
+Time: 23:28
+Phone Number: +595986581349
+Image: static\entradas_emitidas\9QLMQ25B.png
+Caption: ¡Hola Prueba! Esta es tu entrada para 'Dia "A" '.Fecha: 2026-03-06 | Lugar: Universidad AmericanaTipo: STAFF | Código: 9QLMQ25B
+--------------------
