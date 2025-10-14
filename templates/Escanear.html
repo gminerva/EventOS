@@ -1,0 +1,436 @@
+{% extends "base.html" %}
+
+{% block title %}Escáner QR - EventOS{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center mb-4 fade-in">
+                <h2 class="display-5 fw-bold text-primary">
+                    <i class="bi bi-qr-code-scan me-3"></i>
+                    Escáner de Entradas
+                </h2>
+                <p class="lead text-muted">Valida entradas escaneando códigos QR</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <!-- Scanner Section -->
+        <div class="col-lg-8">
+            <div class="card slide-in">
+                <div class="card-header text-center">
+                    <h5 class="mb-0">
+                        <i class="bi bi-camera me-2"></i>
+                        Cámara Escáner
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="scanner-container text-center">
+                        <div id="scanner-status" class="mb-3">
+                            <div class="spinner-border text-primary" role="status" id="loading-spinner">
+                                <span class="visually-hidden">Iniciando cámara...</span>
+                            </div>
+                            <p class="mt-2">Iniciando cámara...</p>
+                        </div>
+                        
+                        <!-- Video element for camera -->
+                        <video id="scanner-video" style="display: none; width: 100%; max-width: 500px; border-radius: 15px;" autoplay playsinline></video>
+                        
+                        <!-- Manual input fallback -->
+                        <div id="manual-input" style="display: none;" class="mt-4">
+                            <h6><i class="bi bi-keyboard me-2"></i>Entrada Manual</h6>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="manual-code" placeholder="Ingrese el código QR manualmente">
+                                <button class="btn btn-primary" onclick="verificarCodigoManual()">
+                                    <i class="bi bi-check-circle"></i> Verificar
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Controls -->
+                        <div class="mt-3">
+                            <button id="start-scanner" class="btn btn-success" onclick="iniciarEscaner()" style="display: none;">
+                                <i class="bi bi-play-circle me-2"></i>Iniciar Escáner
+                            </button>
+                            <button id="stop-scanner" class="btn btn-warning" onclick="detenerEscaner()" style="display: none;">
+                                <i class="bi bi-stop-circle me-2"></i>Detener Escáner
+                            </button>
+                            <button class="btn btn-info" onclick="toggleManualInput()">
+                                <i class="bi bi-keyboard me-2"></i>Entrada Manual
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="col-lg-4">
+            <div class="card fade-in">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="bi bi-list-check me-2"></i>
+                        Resultado de Validación
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div id="result-container">
+                        <div class="text-center text-muted">
+                            <i class="bi bi-qr-code" style="font-size: 3rem; opacity: 0.3;"></i>
+                            <p class="mt-3">Escanee un código QR para ver el resultado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Card -->
+            <div class="card mt-4 fade-in">
+                <div class="card-header">
+                    <h6 class="mb-0">
+                        <i class="bi bi-graph-up me-2"></i>
+                        Estadísticas de Sesión
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <div class="stat-item">
+                                <h4 class="text-success mb-0" id="valid-count">0</h4>
+                                <small class="text-muted">Válidas</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-item">
+                                <h4 class="text-danger mb-0" id="invalid-count">0</h4>
+                                <small class="text-muted">Inválidas</small>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <h5 class="text-primary mb-0" id="total-count">0</h5>
+                        <small class="text-muted">Total Escaneadas</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Scans -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card fade-in">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="bi bi-clock-history me-2"></i>
+                        Validaciones Recientes
+                    </h5>
+                    <button class="btn btn-outline-secondary btn-sm" onclick="limpiarHistorial()">
+                        <i class="bi bi-trash me-2"></i>Limpiar
+                    </button>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Código QR</th>
+                                    <th>Cliente</th>
+                                    <th>Evento</th>
+                                    <th>Estado</th>
+                                    <th>Resultado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-scans">
+                                <!-- Contenido dinámico -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Audio for feedback -->
+<audio id="success-sound" preload="auto">
+    <source src="data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAAFN3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyAFRQRTEAAAARAAAAU3dpdGNoIFBsdXMgdjIuMDAA" type="audio/mpeg">
+</audio>
+<audio id="error-sound" preload="auto">
+    <source src="data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAAFN3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyAFRQRTEAAAARAAAAU3dpdGNoIFBsdXMgdjIuMDAA" type="audio/mpeg">
+</audio>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/@zxing/library@latest"></script>
+<script>
+let codeReader;
+let scanning = false;
+let validCount = 0;
+let invalidCount = 0;
+
+// Inicializar cuando la página carga
+document.addEventListener('DOMContentLoaded', function() {
+    inicializarEscaner();
+});
+
+async function inicializarEscaner() {
+    try {
+        codeReader = new ZXing.BrowserQRCodeReader();
+        
+        // Verificar dispositivos de cámara disponibles
+        const videoInputDevices = await codeReader.listVideoInputDevices();
+        
+        if (videoInputDevices.length > 0) {
+            document.getElementById('loading-spinner').style.display = 'none';
+            document.getElementById('scanner-status').innerHTML = `
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Cámara disponible. Haga clic en "Iniciar Escáner" para comenzar.
+                </div>
+            `;
+            document.getElementById('start-scanner').style.display = 'inline-block';
+        } else {
+            mostrarError('No se encontraron cámaras disponibles');
+            document.getElementById('manual-input').style.display = 'block';
+        }
+    } catch (err) {
+        console.error('Error al inicializar escáner:', err);
+        mostrarError('Error al acceder a la cámara: ' + err.message);
+        document.getElementById('manual-input').style.display = 'block';
+    }
+}
+
+async function iniciarEscaner() {
+    if (scanning) return;
+    
+    try {
+        scanning = true;
+        document.getElementById('start-scanner').style.display = 'none';
+        document.getElementById('stop-scanner').style.display = 'inline-block';
+        document.getElementById('scanner-video').style.display = 'block';
+        document.getElementById('scanner-status').innerHTML = `
+            <div class="alert alert-success">
+                <i class="bi bi-camera me-2"></i>
+                Escáner activo - Enfoque el código QR
+            </div>
+        `;
+
+        codeReader.decodeFromVideoDevice(undefined, 'scanner-video', (result, err) => {
+            if (result) {
+                procesarCodigoQR(result.text);
+            }
+        });
+
+    } catch (err) {
+        console.error('Error al iniciar escáner:', err);
+        mostrarError('Error al iniciar el escáner: ' + err.message);
+        scanning = false;
+    }
+}
+
+function detenerEscaner() {
+    if (codeReader) {
+        codeReader.reset();
+    }
+    scanning = false;
+    document.getElementById('start-scanner').style.display = 'inline-block';
+    document.getElementById('stop-scanner').style.display = 'none';
+    document.getElementById('scanner-video').style.display = 'none';
+    document.getElementById('scanner-status').innerHTML = `
+        <div class="alert alert-warning">
+            <i class="bi bi-pause-circle me-2"></i>
+            Escáner detenido
+        </div>
+    `;
+}
+
+function toggleManualInput() {
+    const manualInput = document.getElementById('manual-input');
+    manualInput.style.display = manualInput.style.display === 'none' ? 'block' : 'none';
+}
+
+function verificarCodigoManual() {
+    const codigo = document.getElementById('manual-code').value.trim();
+    if (codigo) {
+        procesarCodigoQR(codigo);
+        document.getElementById('manual-code').value = '';
+    }
+}
+
+async function procesarCodigoQR(codigo) {
+    try {
+        showLoading();
+        
+        const response = await fetch('/verificar_entrada', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({codigo_qr: codigo})
+        });
+
+        const data = await response.json();
+        
+        hideLoading();
+        
+        if (data.valida) {
+            mostrarResultadoValido(data, codigo);
+            validCount++;
+            reproducirSonido('success');
+        } else {
+            mostrarResultadoInvalido(data, codigo);
+            invalidCount++;
+            reproducirSonido('error');
+        }
+        
+        actualizarEstadisticas();
+        agregarAHistorial(codigo, data);
+        
+    } catch (error) {
+        hideLoading();
+        console.error('Error al verificar entrada:', error);
+        mostrarError('Error al verificar la entrada');
+        invalidCount++;
+        actualizarEstadisticas();
+    }
+}
+
+function mostrarResultadoValido(data, codigo) {
+    const resultContainer = document.getElementById('result-container');
+    resultContainer.innerHTML = `
+        <div class="alert alert-success">
+            <div class="text-center mb-3">
+                <i class="bi bi-check-circle" style="font-size: 3rem;"></i>
+            </div>
+            <h5 class="text-center mb-3">✅ ENTRADA VÁLIDA</h5>
+            <hr>
+            <p><strong>Cliente:</strong> ${data.cliente}</p>
+            <p><strong>Evento:</strong> ${data.evento}</p>
+            <p><strong>Tipo:</strong> ${data.tipo_entrada}</p>
+            <p><strong>Código:</strong> <code>${codigo}</code></p>
+            <div class="text-center mt-3">
+                <span class="badge bg-success fs-6">ACCESO PERMITIDO</span>
+            </div>
+        </div>
+    `;
+}
+
+function mostrarResultadoInvalido(data, codigo) {
+    const resultContainer = document.getElementById('result-container');
+    resultContainer.innerHTML = `
+        <div class="alert alert-danger">
+            <div class="text-center mb-3">
+                <i class="bi bi-x-circle" style="font-size: 3rem;"></i>
+            </div>
+            <h5 class="text-center mb-3">❌ ENTRADA INVÁLIDA</h5>
+            <hr>
+            <p><strong>Motivo:</strong> ${data.mensaje}</p>
+            <p><strong>Código:</strong> <code>${codigo}</code></p>
+            <div class="text-center mt-3">
+                <span class="badge bg-danger fs-6">ACCESO DENEGADO</span>
+            </div>
+        </div>
+    `;
+}
+
+function mostrarError(mensaje) {
+    document.getElementById('scanner-status').innerHTML = `
+        <div class="alert alert-danger">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            ${mensaje}
+        </div>
+    `;
+    document.getElementById('start-scanner').style.display = 'none';
+    document.getElementById('stop-scanner').style.display = 'none';
+}
+
+function actualizarEstadisticas() {
+    document.getElementById('valid-count').textContent = validCount;
+    document.getElementById('invalid-count').textContent = invalidCount;
+    document.getElementById('total-count').textContent = validCount + invalidCount;
+}
+
+function agregarAHistorial(codigo, data) {
+    const historial = document.getElementById('recent-scans');
+    const now = new Date();
+    const timeString = now.toLocaleTimeString();
+    
+    const row = document.createElement('tr');
+    row.className = data.valida ? 'table-success' : 'table-danger';
+    row.innerHTML = `
+        <td>${timeString}</td>
+        <td><code>${codigo}</code></td>
+        <td>${data.cliente || 'N/A'}</td>
+        <td>${data.evento || 'N/A'}</td>
+        <td>
+            <span class="badge bg-${data.valida ? 'success' : 'danger'}">
+                ${data.valida ? 'VÁLIDA' : 'INVÁLIDA'}
+            </span>
+        </td>
+        <td>${data.mensaje}</td>
+    `;
+    
+    historial.insertBefore(row, historial.firstChild);
+    
+    // Limitar a 10 registros
+    while (historial.children.length > 10) {
+        historial.removeChild(historial.lastChild);
+    }
+}
+
+function limpiarHistorial() {
+    document.getElementById('recent-scans').innerHTML = '';
+    validCount = 0;
+    invalidCount = 0;
+    actualizarEstadisticas();
+}
+
+function reproducirSonido(tipo) {
+    try {
+        // Crear un beep simple usando Web Audio API
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        if (tipo === 'success') {
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.setValueAtTime(1000, audioContext.currentTime + 0.1);
+        } else {
+            oscillator.frequency.setValueAtTime(300, audioContext.currentTime);
+            oscillator.frequency.setValueAtTime(200, audioContext.currentTime + 0.1);
+        }
+        
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.2);
+    } catch (error) {
+        console.log('No se pudo reproducir sonido:', error);
+    }
+}
+
+// Teclas de acceso rápido
+document.addEventListener('keydown', function(e) {
+    // Espacio para iniciar/detener escáner
+    if (e.code === 'Space' && !e.target.matches('input')) {
+        e.preventDefault();
+        if (scanning) {
+            detenerEscaner();
+        } else {
+            iniciarEscaner();
+        }
+    }
+    
+    // Enter en input manual para verificar
+    if (e.code === 'Enter' && e.target.id === 'manual-code') {
+        verificarCodigoManual();
+    }
+});

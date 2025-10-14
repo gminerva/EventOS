@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Evento</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        .eye-icon {
+            color: black;
+        }
+        .table-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .table thead th {
+            background-color: #0d6efd;
+            color: white;
+            text-align: center;
+        }
+        .table tbody tr {
+            background-color: #f8f9fa;
+        }
+        .table tbody tr:nth-child(even) {
+            background-color: #e9ecef;
+        }
+        .table tbody td {
+            text-align: center;
+        }
+        .btn-editar {
+            background-color: #0d6efd;
+            color: white;
+        }
+        .btn-eliminar {
+            background-color: #dc3545;
+            color: white;
+        }
+        .section-title {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        function calculateDays() {
+            const eventDate = new Date(document.getElementById('fecha_evento').value);
+            const currentDate = new Date();
+            const timeDifference = eventDate - currentDate;
+            const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+            document.getElementById('days_left').textContent = `Faltan ${daysDifference} días`;
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand fw-bolder">Tareas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('Inicio') }}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('mi_evento') }}">Mi Evento</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="ventasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ventas
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="ventasDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('crear_entrada') }}">Crear Entrada</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('ventas') }}">Mandar Entrada</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('estadisticas') }}">Estadísticas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('escanear') }}">Escanear</a>
+                    </li>
+                </ul>
+            </div>
+            <span>Hola {{session['NombreUsuario']}} {{session['ApellidoUsuario']}}<a href="{{url_for('logout')}}" class="mx-3">Salir</a></span>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Mi Evento</h2>
+        <form action="{{ url_for('save_event') }}" method="post">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="nombre_evento" class="form-label">Nombre del Evento</label>
+                    <input type="text" class="form-control" id="nombre_evento" name="nombre_evento" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="fecha_evento" class="form-label">Fecha del Evento</label>
+                    <input type="date" class="form-control" id="fecha_evento" name="fecha_evento" required onchange="calculateDays()">
+                    <span id="days_left" class="form-text text-muted"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="ubicacion_evento" class="form-label">Ubicación del Evento</label>
+                <input type="text" class="form-control" id="ubicacion_evento" name="ubicacion_evento" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Evento</button>
+        </form>
+
+        <h3 class="mt-5">Eventos Creados</h3>
+        {% if eventos %}
+        <div class="table-container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Fecha</th>
+                        <th>Ubicación</th>
+                        <th>Usuario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for evento in eventos %}
+                    <tr>
+                        <td>{{ evento.idEvento }}</td>
+                        <td>{{ evento.NombreEvento }}</td>
+                        <td>{{ evento.FechaEvento }}</td>
+                        <td>{{ evento.UbicacionEvento }}</td>
+                        <td>{{ evento.UsuarioCreacion }}</td>
+                        <td>
+                            <!--<a href="{{ url_for('editar_evento', idEvento=evento.idEvento) }}" class="btn btn-editar">Editar</a>
+                            <a href="{{ url_for('eliminar_evento', idEvento=evento.idEvento) }}" class="btn btn-eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este evento?');">Eliminar</a> -->
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <h2 class="section-title">Crear Nuevo Usuario</h2>
+        <form action="/new-usuario" method="post">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" name="apellido" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="contrasena" class="form-label">Contraseña</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" minlength="8" required>
+                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                            <i class="bi bi-eye eye-icon"></i>
+                        </button>
+                    </div>
+                    <div class="form-text">La contraseña debe tener mínimo 8 caracteres.</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="rol" class="form-label">Seleccione el Rol</label>
+                    <select class="form-select" id="rol" name="rol" required>
+                        <option value="ADMIN">ADMIN</option>
+                        <option value="STAFF">STAFF</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Usuario</button>
+        </form>
+
+        <h2 class="section-title">Usuarios Creados</h2>
+        <div class="table-container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in usuarios %}
+                    <tr>
+                        <td>{{ user.idUsuario }}</td>
+                        <td>{{ user.NombreUsuario }}</td>
+                        <td>{{ user.ApellidoUsuario }}</td>
+                        <td>{{ user.EmailUsuario }}</td>
+                        <td>{{ user.TipoUsuario }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="loadUserData('{{ user.idUsuario }}', '{{ user.NombreUsuario }}', '{{ user.ApellidoUsuario }}','{{ user.EmailUsuario }}', '{{ user.TipoUsuario }}')"><i class="bi bi-pencil"></i></button>
+                            <a href="{{ url_for('eliminar_usuario', id=user.idUsuario) }}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUserModalLabel">Editar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/editar_usuario" method="post">
+                    <div class="modal-body">
+                        <input type="hidden" id="edit-user-id" name="id">
+                        <div class="mb-3">
+                            <label for="edit-user-nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="edit-user-nombre" name="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-user-apellido" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" id="edit-user-apellido" name="apellido" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-user-rol" class="form-label">Rol</label>
+                            <input type="text" class="form-control" id="edit-user-rol" name="rol" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const contrasena = document.getElementById('contrasena');
+            const tipo = contrasena.getAttribute('type') === 'password' ? 'text' : 'password';
+            contrasena.setAttribute('type', tipo);
+            this.querySelector('i').classList.toggle('bi-eye');
+            this.querySelector('i').classList.toggle('bi-eye-slash');
+        });
+
+        function loadUserData(id, nombre, apellido, email, rol) {
+            document.getElementById('edit-user-id').value = id;
+            document.getElementById('edit-user-nombre').value = nombre;
+            document.getElementById('edit-user-apellido').value = apellido;
+            document.getElementById('edit-user-email').value = email;
+            document.getElementById('edit-user-rol').value = rol;
+        }
+    </script>
+</body>
+</html>

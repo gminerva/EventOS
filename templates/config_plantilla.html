@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}Configurar Plantilla de Entrada{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <h2 class="mb-3">Configurar plantilla de entrada</h2>
+  <p class="text-muted mb-4">
+    Subí tu <strong>imagen base</strong> y ajustá la posición y tamaño del <strong>QR</strong>, <strong>código</strong>, <strong>nombre</strong> y <strong>cédula</strong>.
+  </p>
+
+  <form class="card p-3 mb-4" method="post" enctype="multipart/form-data" action="{{ url_for('subir_plantilla') }}">
+    <div class="row g-3 align-items-center">
+      <div class="col-md-6">
+        <label for="plantilla" class="form-label">Seleccionar imagen base (.png / .jpg)</label>
+        <input class="form-control" type="file" id="plantilla" name="plantilla" accept="image/png,image/jpeg" required>
+      </div>
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-primary mt-4"><i class="bi bi-upload me-2"></i>Subir / Reemplazar</button>
+      </div>
+    </div>
+    {% if plantilla_url %}
+    <div class="mt-3 small text-success">Actual: {{ plantilla_nombre }} (hash {{ plantilla_hash[:8] }}…)</div>
+    {% endif %}
+  </form>
+
+  {% if plantilla_url %}
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="ratio ratio-16x9 border rounded position-relative" style="background:#111;">
+            <canvas id="previewCanvas" class="w-100 h-100" style="position:absolute; left:0; top:0;"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="mb-3">Controles</h5>
+
+          <div class="mb-3">
+            <label class="form-label d-block">Elemento a editar</label>
+            <div class="btn-group w-100" role="group">
+              <input type="radio" class="btn-check" name="elemento" id="el_qr" value="qr" autocomplete="off" checked>
+              <label class="btn btn-outline-primary" for="el_qr">QR</label>
+              <input type="radio" class="btn-check" name="elemento" id="el_codigo" value="codigo" autocomplete="off">
+              <label class="btn btn-outline-primary" for="el_codigo">CÓDIGO</label>
+              <input type="radio" class="btn-check" name="elemento" id="el_nombre" value="nombre" autocomplete="off">
+              <label class="btn btn-outline-primary" for="el_nombre">NOMBRE</label>
+              <input type="radio" class="btn-check" name="elemento" id="el_cedula" value="cedula" autocomplete="off">
+              <label class="btn btn-outline-primary" for="el_cedula">CÉDULA</label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="sliderX" class="form-label">Posición horizontal (<span id="xVal">0</span>%)</label>
+            <input type="range" class="form-range" id="sliderX" min="0" max="100" step="0.1">
+          </div>
+          <div class="mb-3">
+            <label for="sliderY" class="form-label">Posición vertical (<span id="yVal">0</span>%)</label>
+            <input type="range" class="form-range" id="sliderY" min="0" max="100" step="0.1">
+          </div>
+
+          <!-- NUEVO: tamaño para QR y también para CÓDIGO/NOMBRE/CÉDULA -->
+          <div class="mb-3">
+            <label for="sizeSlider" class="form-label">
+              Tamaño (<span id="sizeVal">30</span>% del ancho)
+            </label>
+            <input type="range" class="form-range" id="sizeSlider" min="2" max="80" step="0.1">
+            <div class="form-text">
+              Para QR controla su lado; para textos, controla el <em>tamaño de fuente</em> relativo al ancho de la imagen.
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="mb-3">
+            <label class="form-label">Color del texto</label>
+            <input type="color" id="colorFill" class="form-control form-control-color" value="#FFFFFF" title="Color de la letra">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Color del borde</label>
+            <input type="color" id="colorStroke" class="form-control form-control-color" value="#000000" title="Color del borde">
+          </div>
+          <div class="mb-3">
+            <label for="strokeWidth" class="form-label">Grosor del borde (<span id="strokeWVal">3</span> px)</label>
+            <input type="range" class="form-range" id="strokeWidth" min="0" max="10" step="1" value="3">
+          </div>
+
+          <button id="guardarBtn" class="btn btn-success w-100">
+            <i class="bi bi-save me-2"></i>Guardar configuración
+          </button>
+          <div class="small text-muted mt-2">Se guardará vinculada a esta imagen base.</div>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-body">
+          <strong>Valores de prueba</strong>
+          <div class="small text-muted">
+            Código: <code>{{ demo_codigo }}</code><br>
+            Nombre: <code>{{ demo_nombre }}</code><br>
+            Cédula: <code>{{ demo_cedula }}</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="alert alert-info mt-3">
+    Subí tu imagen base para habilitar los controles de configuración.
+  </div>
+  {% endif %}
+</div>
+
+<script>
+  window.CONFIG_HASH = "{{ plantilla_hash or '' }}";
+  window.PLANTILLA_URL = "{{ plantilla_url or '' }}";
+  window.DEMO_QR_URL = "{{ url_for('static', filename='qr/demo_qr.png') }}";
+  window.DEMO_CODIGO = "{{ demo_codigo }}";
+  window.DEMO_NOMBRE = "{{ demo_nombre }}";
+  window.DEMO_CEDULA = "{{ demo_cedula }}";
+</script>
+<script src="{{ url_for('static', filename='js/config_plantilla.js') }}"></script>
+{% endblock %}
