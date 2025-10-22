@@ -60,3 +60,5 @@ pytest -q
 ```
 Los tests usan BD temporal (ver [tests/test_app_py.py](tests/test_app_py.py)).
 
+actualizado por Sebastian Salgueiro el 21/10/2025
+
