@@ -312,7 +312,7 @@ def init_database():
     #"prueba de commit"
 
 
-
+    #prueba 2
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS tipos_entradas (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
