@@ -1,0 +1,25 @@
+﻿# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Entornos
+.venv/
+venv/
+
+# Archivos locales
+BDATA.db
+PyWhatKit_DB.txt
+
+# Generados por la app
+static/entradas_emitidas/
+static/qr/
+
+# VSCode
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
