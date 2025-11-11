@@ -1,16 +1,16 @@
-﻿# Estadísticas: Global vs Por Evento
+﻿# Estadísticas (GLOBAL)
 
-- Global (solo Admin):
-  Muestra KPIs totales, series de ventas y agregados en toda la plataforma.
+La versión actual reporta métricas globales:
+- **Total de ventas** y **ingresos** (estados VIGENTE/UTILIZADA)
+- **Entradas utilizadas**
+- **Precio promedio**
+- Series de **ventas por día** (últimos 30 días)
+- Agregados por **evento**, **tipo de entrada** y **vendedor**
 
-- Por Evento (Staff/Admin):
-  Filtra métricas por `evento_id`.
-  Ejemplos de KPIs: entradas vendidas, utilizadas, ingresos, promedio de precio.
+## Consideraciones
+- Se excluyen ventas CANCELADAS de las métricas de ingresos.
+- Se utilizan consultas agregadas desde `entradas_vendidas`.
+- Las fechas se basan en `fecha_venta` y `fecha_uso`.
 
-# Permisos
-- Admin: puede ver GLOBAL y cualquier evento.
-- Staff: solo puede ver eventos a cargo o asignados.
-
-# Notas de diseño
-- Todas las consultas usan `estado IN ("VIGENTE","UTILIZADA")` para ingresos/ventas vigentes.
-- Entradas expiran automáticamente si el evento ya pasó.
+## Próximos pasos (futuro)
+- Filtro por evento y permisos por rol.
