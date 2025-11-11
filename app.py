@@ -1128,3 +1128,6 @@ if __name__ == "__main__":
     ensure_table_columns()
     os.makedirs('static/images', exist_ok=True)
     app.run(debug=True, use_reloader=False)
+
+# --- agregado por Juan: commit de mantenimiento ---
+
