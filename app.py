@@ -1131,3 +1131,10 @@ if __name__ == "__main__":
 
 # --- agregado por Juan: commit de mantenimiento ---
 
+# =========================
+# [Notas técnicas - Juan]
+# - Estadísticas actuales: solo GLOBAL (KPIs/series de toda la plataforma).
+# - Escanear: /escanear (UI) + /verificar_entrada (API) actualiza estado a 'UTILIZADA'.
+# - Flujo de ventas: genera QR, guarda en 'entradas_vendidas', y envía por WhatsApp (pywhatkit).
+# - Si el evento ya pasó, las entradas pueden invalidarse por política (si se habilita el job).
+# =========================
